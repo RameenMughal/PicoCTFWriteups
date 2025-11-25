@@ -3,7 +3,7 @@
 ## Description
 A company stored a secret message on a server which got breached due to the admin using weakly hashed passwords. Can you gain access to the secret stored within the server?
 
-Launch the instance and connect to the shell by command nc verbal-sleep.picoctf.net 60005
+Launch the instance and connect to the shell by command `nc verbal-sleep.picoctf.net PORT`
 
 ## Solution
 By connecting to the instance, we see our first hash and asks for the password
