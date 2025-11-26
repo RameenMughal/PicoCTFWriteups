@@ -8,7 +8,7 @@ The numbers... what do they mean?
 
 ## Solution
 
-As the flag format is PICOCTF{}, it is an A1Z26 cipher (1=A, 2=B, … 26=Z).
+As the flag format is `PICOCTF{}`, it is an A1Z26 cipher (1=A, 2=B, … 26=Z).
 
 The Letter-to-Number Cipher (or Number-to-Letter Cipher or numbered alphabet) consists in replacing each letter by its position in the alphabet, for example A=1, B=2, Z=26, hence its over name A1Z26.
 
