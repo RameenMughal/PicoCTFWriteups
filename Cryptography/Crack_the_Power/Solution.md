@@ -14,8 +14,91 @@ Downloading the message we get:
 
 ## Solution
 
-As Factoring the `n` value is not an option so we will not try to get the `p` and `q` value as I have also checked from the [FactorDB](https://factordb.com/) that the `n` value is `C` (Composite, Factor is not known), so we will try another way.
+### Understanding the Problem
 
-The value of `e` is strange as mostly `65537` (most common) and `3` (old and dangerous) are used so `20` is not the standard value.
+The challenge description explicitly states that the modulus `n` is built from primes large enough that **factoring is not feasible**. This was also verified using [FactorDB](https://factordb.com/), where the value of `n` is listed as **C (Composite, factors unknown)**.
 
+Since factoring `n` is not an option, the vulnerability must lie in the **usage of RSA**, not in breaking the modulus itself.
 
+### Observing the Public Exponent
+
+In real-world RSA implementations, the most commonly used public exponent is:
+
+- `e = 65537` (modern and secure)
+
+Older implementations sometimes used:
+
+- `e = 3`, which is known to be insecure if misused
+
+In this challenge, the given public exponent is: `e = 20`
+
+This is a **non-standard and unusually small value**, which immediately suggests a potential **low public exponent attack**, especially if RSA is used without padding.
+
+### RSA Encryption Formula
+
+RSA encryption is defined as:
+
+$$
+c = m^e \bmod n
+$$
+
+The modulo operation only affects the result **if the value exceeds `n`**.
+
+If the following condition holds:
+
+$$
+m^e < n
+$$
+
+then no modular reduction occurs, and the encryption simplifies to:
+
+$$
+c = m^e
+$$
+
+### Why the Modulo Does Not Apply Here
+
+CTF flags typically follow a predictable format such as: `picoCTF{...}`
+
+Such a message is short and usually consists of:
+
+- ~20–40 ASCII characters
+- Approximately **160–320 bits**
+
+In contrast:
+
+- The modulus `n` is **thousands of bits long**
+- Even after raising the message to the power `e = 20`, the value of `m^e` remains **much smaller than `n`**
+
+Therefore:
+
+$$
+m^{20} < n
+$$
+
+This means the modulo operation has no effect, and RSA effectively degenerates into **plain exponentiation**.
+
+### Exploiting the Vulnerability
+
+Since:
+
+$$
+c = m^e
+$$
+
+the original message can be recovered by computing the **integer e-th root** of the ciphertext:
+
+$$
+m = \sqrt[e]{c}
+$$
+
+In this case:
+
+$$
+m = \sqrt[20]{c}
+$$
+
+By computing the integer 20th root of `c`, the plaintext message is directly recovered.  
+The resulting integer can then be converted back into bytes to reveal the flag.
+
+I created a python code `low_evalue.py` by first finding the right root which equals to correct `c` and then used this to get the flag!
