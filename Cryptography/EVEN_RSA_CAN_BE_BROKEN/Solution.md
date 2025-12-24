@@ -51,20 +51,10 @@ if p * p == N:
 
 But this does not give any result meaning this is not a bad RSA. So now we use [FactorDB](https://factordb.com/) as it knows many resused RSA Moduli, so if it gives FF (Fully Factored) meaning we got the `p` and `q`.
 
-Putting the `N` value in FactorDB gives us FF meaning it is fully factored in which there are two prime numbers `p = 2` and `q = 119310928994153755049449303566212531682035777824222857846655316315298936941294806203468898347603541547245045301149725411
-42366924267352283223293789282127167`
+Putting the `N` value in FactorDB gives us FF meaning it is fully factored in which there are two prime numbers `p = 2` and `q = 11931092899415375504944930356621253168203577782422285784665531631529893694129480620346889834760354154724504530114972541142366924267352283223293789282127167`
 
 Now making a Python code named as `flag_reveal.py` to decrypt the message by the equation `m = c^d mod N` 
 
 Running the program gives us the flag!
 
 <img width="300" height="100" alt="RSA" src="https://github.com/user-attachments/assets/c98ae544-2ce6-4537-82d6-ff191474c00c" />
-
-
-
-
-
-
-
-
-
