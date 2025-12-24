@@ -6,25 +6,95 @@ This service provides you an encrypted flag. Can you decrypt it with just N & e?
 
 Connect to the program with netcat: `nc verbal-sleep.picoctf.net PORT`
 
-### RSA Overview
+## RSA Overview
 
-RSA is one of the most widely used public-key cryptosystems. It’s based on **the difficulty of factoring large numbers**. Here's the core idea:
+RSA is one of the most widely used public-key cryptosystems. Its security is based on the **computational difficulty of factoring large composite numbers**. RSA uses a pair of mathematically related keys: a public key for encryption and a private key for decryption.
 
-#### Key Generation
-1. Pick two large prime numbers, `p` and `q`.
-2. Compute `N = p * q` (the modulus).
-3. Compute `φ(N) = (p - 1) * (q - 1)` (Euler’s totient function).
-4. Choose an encryption exponent `e` (3, 15, 17 or 65537).
-5. Compute the decryption exponent `d` such that `d * e ≡ 1 (mod φ(N))`. In other words, `d * e - 1` is divisible by `φ(N)`.
+### Key Generation
 
-#### Encryption
-1. Convert the message `m` into an integer.
-2. Compute ciphertext:  `c = m^e mod N`
+1. Choose two large prime numbers:
 
-#### Decryption
-1. Compute the original message:  `m = c^d mod N`
+$$
+p,\ q
+$$
 
-**Important:** `N` and `e` are public keys, while `d` is private key.
+2. Compute the modulus:
+
+$$
+N = p \times q
+$$
+
+3. Compute Euler’s totient function:
+
+$$
+\varphi(N) = (p - 1)(q - 1)
+$$
+
+4. Choose a public encryption exponent \( e \) such that:
+
+$$
+1 < e < \varphi(N)
+$$
+
+and
+
+$$
+\gcd(e, \varphi(N)) = 1
+$$
+
+Common choices for \( e \) include:
+
+$$
+e = 65537
+$$
+
+5. Compute the private decryption exponent \( d \) such that:
+
+$$
+d \times e \equiv 1 \pmod{\varphi(N)}
+$$
+
+This means \( d \) is the modular multiplicative inverse of \( e \).
+
+### Encryption
+
+1. Convert the plaintext message into an integer \( m \) such that:
+
+$$
+0 \le m < N
+$$
+
+2. Compute the ciphertext:
+
+$$
+c = m^e \bmod N
+$$
+
+### Decryption
+
+1. Recover the original message using the private key:
+
+$$
+m = c^d \bmod N
+$$
+
+2. Convert the resulting integer back into readable plaintext.
+
+### Key Properties
+
+- The **public key** consists of:
+
+$$
+(N, e)
+$$
+
+- The **private key** is:
+
+$$
+d
+$$
+
+- Without knowledge of \( d \) (or the factors of \( N \)), recovering \( m \) from \( c \) is computationally infeasible when RSA is implemented correctly.
 
 For Reference: [How To Encrypt with RSA](https://youtu.be/wcbH4t5SJpg?si=ayQqE_PIZxJWvsqZ)
 
