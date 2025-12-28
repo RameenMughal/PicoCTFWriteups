@@ -2,7 +2,7 @@ import hashlib
 import sys
 
 # 🔐 Your target hash
-target_hash = "2d3612ea1ece0dac0ae7c2a8c3038bdf45787413da2aaccab25d95babac0d2ea"
+target_hash = "f25da7cde02d90d38708c5011c5b1a791291cecb786ce769ac2f75b2043441f1"
 
 # Encodings and case variants to try
 encodings = ["utf-8", "utf-16-le", "utf-16-be", "latin-1"]
@@ -89,3 +89,4 @@ for cheese in cheeses:
 
 if not found:
     print("\n[-] No matching cheese and salt combination found.")
+
