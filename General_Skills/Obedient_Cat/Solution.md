@@ -10,7 +10,7 @@ The link is provided to access the file.
 
 ### Method 1: Downloading the File
 
-By clicking the link, I downloaded the file and checked the contents of the file by oprning the file in Notepad.
+By clicking the link, I downloaded the file and checked the contents of the file by opening the file in Notepad.
 
 This got me the flag written in plain sight!
 
