@@ -1,4 +1,4 @@
-# DISKO 1
+# DISKO 1 💿
 
 Challenge: [DISKO 1](https://play.picoctf.org/practice/challenge/505?page=1&search=DISK)
 
@@ -26,11 +26,14 @@ Investigators never analyze the original disk. They analyze the image copy.
 
 ## Solution
 
-By downloading the disk image we can check the contents of the file by nano command. It has so many unreadable context.
+By downloading the disk image we can check the contents of the file by `nano disko-1.dd` command. It has so many unreadable context.
 
-First we can use the strings command to extract meaningful characters and words from the file but it gives us many strings which is unfeasible to see the flag.
+<img width="840" height="322" alt="image" src="https://github.com/user-attachments/assets/cab4b5ab-cc5b-4181-ad11-d2f72d26a88a" />
 
-We know that the flag format is picoCTF so we can use the strings and grep command to get the flag directly.
+First we can use the `strings disko-1.dd` command to extract meaningful characters and words from the file but it gives us many strings which is unfeasible to see the flag.
 
-By command strings disko-1.dd | grep -o 'picoCTF{[^}]*}' we get the flag!
+We know that the flag format is `picoCTF{}` so we can use the `strings` and `grep` command to get the flag directly.
 
+By command `strings disko-1.dd | grep -o 'picoCTF{[^}]*}'` we get the flag!
+
+<img width="469" height="55" alt="image" src="https://github.com/user-attachments/assets/66c3ff9e-298d-4f9f-a93a-86ce138a9b08" />
