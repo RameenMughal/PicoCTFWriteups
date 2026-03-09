@@ -37,3 +37,7 @@ We know that the flag format is `picoCTF{}` so we can use the `strings` and `gre
 By command `strings disko-1.dd | grep -o 'picoCTF{[^}]*}'` we get the flag!
 
 <img width="469" height="55" alt="image" src="https://github.com/user-attachments/assets/66c3ff9e-298d-4f9f-a93a-86ce138a9b08" />
+
+## Credits 🙌
+
+Thanks to [CyberConnect](https://github.com/Cyber-Connect-pk) for hosting weekly Monday CTFs to help us improve our CTF skills!
